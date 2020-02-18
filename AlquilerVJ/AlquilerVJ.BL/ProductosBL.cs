@@ -8,29 +8,22 @@ namespace AlquilerVJ.BL
 {
     public class ProductosBL
     {
-        public List<Producto> ObtenerProductos()
+        Contexto _contexto;
+        public List<Producto> ListadeProductos { get; set; }
+
+        public ProductosBL()
         {
-            var producto1 = new Producto();
-            producto1.Id = 1;
-            producto1.Descripcion = "Mortal Kombat 9";
-            producto1.Disponible = "si";
+            _contexto = new Contexto();
+            ListadeProductos = new List<Producto>();
+        }
 
-            var producto2 = new Producto();
-            producto2.Id = 2;
-            producto2.Descripcion = "Fifa 2020";
-            producto2.Disponible = "si";
+        public List<Producto> ObtenerProductos()
+        { 
 
-            var producto3 = new Producto();
-            producto3.Id = 3;
-            producto3.Descripcion = "Resident Evil";
-            producto3.Disponible = "si";
+            ListadeProductos = _contexto.Productos.ToList();
+     
 
-            var listadeProductos = new List<Producto>();
-            listadeProductos.Add(producto1);
-            listadeProductos.Add(producto2);
-            listadeProductos.Add(producto3);
-
-            return listadeProductos;
+            return ListadeProductos; 
         }
     }
 }
